@@ -31,21 +31,22 @@ public class PokerSolution {
             player2Hands = tokens.get(5) + " " + tokens.get(6) + " " + tokens.get(7) + " " + tokens.get(8) + " "
                     + tokens.get(9);
 
-            if(ps.analyzeHands(player1Hands) > ps.analyzeHands(player2Hands)){
-                player1 +=1;
-            }else if (ps.analyzeHands(player1Hands) < ps.analyzeHands(player2Hands)){
-                player2 +=1;
-            }else{
-                draw +=1;
+            if (ps.analyzeHands(player1Hands) > ps.analyzeHands(player2Hands)) {
+                player1 += 1;
+            } else if (ps.analyzeHands(player1Hands) < ps.analyzeHands(player2Hands)) {
+                player2 += 1;
+            } else {
+                draw += 1;
             }
 
             tokens.clear();
         }
         scanner.close();
 
-        System.out.println(player1.toString());
-        System.out.println(player2.toString());
-        System.out.println(draw.toString());
+        System.out.println("Game result:");
+        System.out.println("Player1 wins: " + player1.toString() + " hands");
+        System.out.println("Player2 wins: " + player2.toString() + " hands");
+        System.out.println("Draws: " + draw.toString() + " hands");
 
     }
 
