@@ -54,12 +54,26 @@ public class PokerSolution {
 
             if (nums[0] == nums[3] || nums[1] == nums[4]) {
                 // Four of a kind
-                return 8.0 + param;
+                int tmp = 0;
+                if (nums[0] != nums[2]) {
+                    tmp = nums[0];
+                } else {
+                    tmp = nums[4];
+                }
+                return 8.0 + nums[2] * 0.01 + nums[2] * 0.0001 + nums[2] * 0.000001 + nums[2] * 0.00000001
+                        + tmp * 0.0000000001;
             }
 
             if ((nums[0] == nums[2] && nums[3] == nums[4]) || (nums[0] == nums[1] && nums[2] == nums[4])) {
                 // Full House
-                return 7.0 + param;
+                int tmp = 0;
+                if (nums[0] != nums[2]) {
+                    tmp = nums[0];
+                } else {
+                    tmp = nums[4];
+                }
+                return 7.0 + nums[2] * 0.01 + nums[2] * 0.0001 + nums[2] * 0.000001 + tmp * 0.00000001
+                        + tmp * 0.0000000001;
             }
 
             // flush
@@ -68,12 +82,25 @@ public class PokerSolution {
 
         if (nums[0] == nums[3] || nums[1] == nums[4]) {
             // Four of a kind
-            return 8.0 + param;
+            int tmp = 0;
+            if (nums[0] != nums[2]) {
+                tmp = nums[0];
+            } else {
+                tmp = nums[4];
+            }
+            return 8.0 + nums[2] * 0.01 + nums[2] * 0.0001 + nums[2] * 0.000001 + nums[2] * 0.00000001
+                    + tmp * 0.0000000001;
         }
 
         if ((nums[0] == nums[2] && nums[3] == nums[4]) || (nums[0] == nums[1] && nums[2] == nums[4])) {
             // Full House
-            return 7.0 + param;
+            int tmp = 0;
+            if (nums[0] != nums[2]) {
+                tmp = nums[0];
+            } else {
+                tmp = nums[4];
+            }
+            return 7.0 + nums[2] * 0.01 + nums[2] * 0.0001 + nums[2] * 0.000001 + tmp * 0.00000001 + tmp * 0.0000000001;
         }
 
         if (nums[4] - nums[3] == 1 && nums[3] - nums[2] == 1 && nums[2] - nums[1] == 1 && nums[1] - nums[0] == 1) {
@@ -81,20 +108,52 @@ public class PokerSolution {
             return 5.0 + param;
         }
 
-        if ((nums[0] == nums[2]) || (nums[1] == nums[3]) || (nums[2] == nums[4])) {
-            // Three of a kind
-            return 4.0 + param;
+        // Three of a kind
+        if ((nums[0] == nums[2])) {
+            return 4.0 + nums[2] * 0.01 + nums[2] * 0.0001 + nums[2] * 0.000001 + nums[4] * 0.00000001
+                    + nums[3] * 0.0000000001;
+        }
+        if ((nums[1] == nums[3])) {
+            return 4.0 + nums[2] * 0.01 + nums[2] * 0.0001 + nums[2] * 0.000001 + nums[4] * 0.00000001
+                    + nums[1] * 0.0000000001;
+        }
+        if ((nums[2] == nums[4])) {
+            return 4.0 + nums[2] * 0.01 + nums[2] * 0.0001 + nums[2] * 0.000001 + nums[1] * 0.00000001
+                    + nums[0] * 0.0000000001;
         }
 
-        if ((nums[0] == nums[1] && nums[2] == nums[3]) || (nums[0] == nums[1] && nums[3] == nums[4])
-                || (nums[1] == nums[2] && nums[3] == nums[4])) {
-            return 3.0 + param;
+        // Two pairs
+        if ((nums[0] == nums[1] && nums[2] == nums[3])) {
+            return 3.0 + nums[2] * 0.01 + nums[2] * 0.0001 + nums[0] * 0.000001 + nums[0] * 0.00000001
+                    + nums[4] * 0.0000000001;
+        }
+        if ((nums[0] == nums[1] && nums[3] == nums[4])) {
+            return 3.0 + nums[3] * 0.01 + nums[3] * 0.0001 + nums[1] * 0.000001 + nums[1] * 0.00000001
+                    + nums[2] * 0.0000000001;
+        }
+        if ((nums[1] == nums[2] && nums[3] == nums[4])) {
+            return 3.0 + nums[3] * 0.01 + nums[3] * 0.0001 + nums[1] * 0.000001 + nums[1] * 0.00000001
+                    + nums[0] * 0.0000000001;
         }
 
-        if((nums[0] == nums[1]) || (nums[1] == nums[2]) ||(nums[2] == nums[3]) ||(nums[3] == nums[4])){
+        // Pair
+        if ((nums[0] == nums[1])) {
+            return 2.0 + nums[1] * 0.01 + nums[0] * 0.0001 + nums[4] * 0.000001 + nums[3] * 0.00000001
+                    + nums[2] * 0.0000000001;
+        }
+        if ((nums[1] == nums[2])) {
+            return 2.0 + nums[2] * 0.01 + nums[1] * 0.0001 + nums[4] * 0.000001 + nums[3] * 0.00000001
+                    + nums[0] * 0.0000000001;
+        }
+        if ((nums[2] == nums[3])) {
+            return 2.0 + nums[3] * 0.01 + nums[2] * 0.0001 + nums[4] * 0.000001 + nums[1] * 0.00000001
+                    + nums[0] * 0.0000000001;
+        }
+        if ((nums[3] == nums[4])) {
             return 2.0 + param;
         }
 
+        // High card
         return 1.0 + param;
     }
 
