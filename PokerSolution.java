@@ -1,10 +1,52 @@
+
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class PokerSolution {
     public static void main(String[] args) {
-        String line = "QS JS TS KS 9S";
+        Integer player1 = 0;
+        Integer player2 = 0;
+        Integer draw = 0;
+        String player1Hands = "";
+        String player2Hands = "";
         PokerSolution ps = new PokerSolution();
-        System.out.println(ps.analyzeHands(line));
+
+        List<String> tokens = new ArrayList<>();
+
+        Scanner scanner = new Scanner(System.in);
+
+        while (scanner.hasNextLine()) {
+            StringTokenizer st = new StringTokenizer(scanner.nextLine());
+
+            while (st != null && st.hasMoreElements()) {
+                tokens.add(st.nextToken());
+            }
+
+            player1Hands = tokens.get(0) + " " + tokens.get(1) + " " + tokens.get(2) + " " + tokens.get(3) + " "
+                    + tokens.get(4);
+
+            player2Hands = tokens.get(5) + " " + tokens.get(6) + " " + tokens.get(7) + " " + tokens.get(8) + " "
+                    + tokens.get(9);
+
+            if(ps.analyzeHands(player1Hands) > ps.analyzeHands(player2Hands)){
+                player1 +=1;
+            }else if (ps.analyzeHands(player1Hands) < ps.analyzeHands(player2Hands)){
+                player2 +=1;
+            }else{
+                draw +=1;
+            }
+
+            tokens.clear();
+        }
+        scanner.close();
+
+        System.out.println(player1.toString());
+        System.out.println(player2.toString());
+        System.out.println(draw.toString());
+
     }
 
     public double analyzeHands(String input) {
